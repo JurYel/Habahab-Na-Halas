@@ -11,7 +11,7 @@ class Game:
         self.screen_bg = (110, 110, 5)
         self.surface = pygame.display.set_mode((player_screen[:]))
         self.surface.fill((self.screen_bg[:]))
-        self.snake = Snake(self.surface, self.screen_bg)
+        self.snake = Snake(self.surface, self.screen_bg, length=2)
         self.snake.draw() 
 
     def run(self):
