@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 from Snake import Snake 
+from Apple import Apple
 import time
 import neat
 
@@ -13,6 +14,12 @@ class Game:
         self.surface.fill((self.screen_bg[:]))
         self.snake = Snake(self.surface, self.screen_bg, length=2)
         self.snake.draw() 
+        self.apple = Apple(self.surface)
+        self.apple.draw()
+
+    def play(self):
+        self.apple.draw()
+        self.snake.walk()
 
     def run(self):
         running = True
@@ -37,7 +44,7 @@ class Game:
                 elif event.type == QUIT:
                     running = False
 
-            self.snake.walk()
+            self.play()
             time.sleep(.2)
 
 if __name__ == '__main__':
