@@ -5,6 +5,8 @@ from Apple import Apple
 import time
 import neat
 
+SIZE = 40
+
 class Game:
     def __init__(self, player_screen=(800, 600)):
         pygame.init()
@@ -17,11 +19,22 @@ class Game:
         self.apple = Apple(self.surface)
         self.apple.draw()
 
-    def play(self):
-        self.apple.draw()
-        self.snake.walk()
+    def check_collision(self, x1, y1, x2, y2):
+        if x1 >= x2 and x1 <= x2 + (SIZE - 2):
+            if y1 >= y2 and y1 <= y2 + (SIZE - 5 ):
+                return True
+        return False
 
-    def run(self):
+    def play(self):
+        self.snake.walk()
+        self.apple.draw()
+
+        if self.check_collision(self.snake.x[0], self.snake.y[0], \
+                            self.apple.x, self.apple.y):
+                self.apple.move()
+
+
+    def run(self): 
         running = True
         while running:
             for event in pygame.event.get():

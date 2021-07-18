@@ -11,6 +11,9 @@ class Apple:
         self.y = SIZE * 3
 
     def draw(self):
-        self.game_screen.fill((110, 110, 5))
         self.game_screen.blit(self.image, (self.x, self.y))
         pygame.display.flip()
+
+    def move(self):
+        self.x = random.randint(0, 19) * SIZE
+        self.y = random.randint(0, 14) * SIZE
